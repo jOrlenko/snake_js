@@ -3,11 +3,10 @@ const board = document.getElementById('board');
 const scoreBoard = document.getElementById('scoreBoard');
 const startButton = document.getElementById('start');
 const gameOver = document.getElementById('gameOver');
-const speedBoard = document.getElementById('speedBoard');
 
 // Game settings
 const boardSize = 10;
-let gameSpeed = 1000;
+const gameSpeed = 300;
 const squareTypes = {
     emptySquare: 0,
     snakeSquare: 1,
@@ -88,19 +87,9 @@ const createRandomFood = () => {
     drawSquare(emptySquareRandom, 'footSquare');
 }
 
-
-// acelera la serpiente
-const acelerar = () => {
-    if (score % 3 === 0) {
-        gameSpeed = gameSpeed - 50;
-        speedBoard.innerText = gameSpeed + 'ms';
-    }
-}
-
 // setea el score
 const updateScore = () => {
     scoreBoard.innerText = score;
-    acelerar();
 };
 
 // devuelve la direcion
@@ -175,6 +164,7 @@ const startGame = () => {
     drawSnake();
     updateScore();
     createRandomFood();
+    speed = 1;
     document.addEventListener('keydown', directionEvent);
     moveInterval = setInterval( () => moveSnake(), gameSpeed);
 };
